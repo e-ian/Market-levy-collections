@@ -6,7 +6,64 @@
   border-radius:0;
   border-top: 0;
   border-bottom: 0px;
+  width: 120%;
+  padding-left: 30px;
+  height: 900px;
 }
 .profileImage{
   height: 40px;
+}
+.card-margin{
+  margin-top: 10px;
+}
+.trend-charts{
+  width: 115%;
+  height: 350px;
+  margin-left: -80px;
+}
+.bubble-chart{
+  margin-top: 10px;
+  width: 600px;
+  height: 355px;
+}
+.add-record{
+  float:right;
+  margin-top: 100px;
+}
+.ui.inline.loader.active, .ui.inline.loader.visible {
+  display: inline-block;
+  margin-left: 40%;
+  margin-top: 15%;
+}
+.ui.inverted.dimmer .ui.small.loader, .ui.small.loader {
+  width: 1.71428571rem;
+  height: 1.71428571rem;
+  font-size: .92857143em;
+  margin-bottom: 5%;
+}
+.form-element{
+  padding: 60px;
+}
+.form-card{
+  margin-top: 150px;
+}
+.maps{
+  margin-top: 10px;
+  margin-left: 10px;
+  height:600px;
+  margin-right: 10px;
+  border: 2px solid gainsboro;
+}
+.footer{
+ padding: 2%;
+ margin-left: 40%;
+}
+.venderMaker{
+  background-image: url('../src/images/pointer.png');
+  height: 30px;
+  width: 30px;
+}
+a {
+  color:green !important;
+  text-decoration: none;
 }

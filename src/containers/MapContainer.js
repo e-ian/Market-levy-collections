@@ -1,12 +1,13 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
-import { useSelector } from 'react-redux'
 import SideBarComponent from '../components/SideBarComponent'
+import {useSelector} from 'react-redux'
 import  NavBarComponent from '../components/NavBarComponent'
-import TrendCompoent from '../components/TrendCompoent'
 import {Grid} from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
 import FooterComponent from '../components/FooterComponent'
-const DashboardContainer =({login})=>{
+import  MapsComponent from '../components/MapsComponent'
+
+const  MapContainer=()=> {
     const { authToken } = useSelector(state =>state.auth)
     if(!authToken) return <Redirect to="/login"/>
     return (
@@ -17,8 +18,8 @@ const DashboardContainer =({login})=>{
                 <Grid.Column width="2">
                 <SideBarComponent/>
                 </Grid.Column>
-                <Grid.Column width="14" >
-                <TrendCompoent/>
+                <Grid.Column width="14">
+                <MapsComponent/>
                 <FooterComponent/>
                 </Grid.Column>
             </Grid.Row>
@@ -26,4 +27,4 @@ const DashboardContainer =({login})=>{
         </div>
     )
 }
-export default DashboardContainer
+export default MapContainer

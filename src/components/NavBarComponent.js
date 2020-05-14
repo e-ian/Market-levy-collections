@@ -2,10 +2,12 @@ import React, {useState} from 'react'
 import {Menu, Image} from 'semantic-ui-react'
 import avatar from '../images/image.png'
 
-export default function NavBarComponent() {
-    const [activeItem , setActiveItem ] =  useState('')
+const  NavBarComponent =(props)=>{
+    const [activeItem, setActiveItem ] =  useState('')
     const handleItemClick = (e,{name})=>{
         setActiveItem(name)
+        localStorage.removeItem('access-token')
+        window.location.href="/login"
     }
     return (
         <div>
@@ -19,11 +21,10 @@ export default function NavBarComponent() {
               onClick={handleItemClick}
             />
             <Menu.Item/>
-            <Menu.Item/>
-            <Menu.Item/>
           </Menu.Menu>
         </Menu>
       </div>
-        </div>
-    )
+    </div>
+  )
 }
+export default NavBarComponent

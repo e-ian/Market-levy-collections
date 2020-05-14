@@ -1,13 +1,16 @@
 import React from 'react'
-import {Redirect} from 'react-router-dom'
-import { useSelector } from 'react-redux'
-import SideBarComponent from '../components/SideBarComponent'
-import  NavBarComponent from '../components/NavBarComponent'
-import TrendCompoent from '../components/TrendCompoent'
 import {Grid} from 'semantic-ui-react'
+import {Redirect} from 'react-router-dom'
+import {useSelector} from 'react-redux'
+import NavBarComponent from '../components/NavBarComponent'
+import SideBarComponent from '../components/SideBarComponent'
+import TicketComponents from '../components/TicketComponents'
 import FooterComponent from '../components/FooterComponent'
-const DashboardContainer =({login})=>{
-    const { authToken } = useSelector(state =>state.auth)
+
+
+const  TicketsContainers=()=>{
+    const { authToken} = useSelector(state=>state.auth)
+    console.log(authToken)
     if(!authToken) return <Redirect to="/login"/>
     return (
         <div>
@@ -18,7 +21,7 @@ const DashboardContainer =({login})=>{
                 <SideBarComponent/>
                 </Grid.Column>
                 <Grid.Column width="14" >
-                <TrendCompoent/>
+                <TicketComponents/>
                 <FooterComponent/>
                 </Grid.Column>
             </Grid.Row>
@@ -26,4 +29,4 @@ const DashboardContainer =({login})=>{
         </div>
     )
 }
-export default DashboardContainer
+export default TicketsContainers
