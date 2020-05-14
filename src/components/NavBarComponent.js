@@ -19,8 +19,6 @@ export default function NavBarComponent() {
               onClick={handleItemClick}
             />
             <Menu.Item/>
-            <Menu.Item/>
-            <Menu.Item/>
           </Menu.Menu>
         </Menu>
       </div>

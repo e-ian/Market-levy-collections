@@ -1,9 +1,11 @@
 import React from 'react'
-import SideBarComponent from '../components/SideBarComponent'
-import  NavBarComponent from '../components/NavBarComponent'
-import TrendCompoent from '../components/TrendCompoent'
 import {Grid} from 'semantic-ui-react'
-const DashboardContainer =()=>{
+import NavBarComponent from '../components/NavBarComponent'
+import SideBarComponent from '../components/SideBarComponent'
+import TicketComponents from '../components/TicketComponents'
+
+
+const  TicketsContainers=()=>{
     return (
         <div>
         <NavBarComponent/>
@@ -13,11 +15,12 @@ const DashboardContainer =()=>{
                 <SideBarComponent/>
                 </Grid.Column>
                 <Grid.Column width="14" >
-                <TrendCompoent/>
+                <TicketComponents/>
                 </Grid.Column>
             </Grid.Row>
         </Grid>
         </div>
     )
 }
-export default DashboardContainer
+
+export default TicketsContainers
