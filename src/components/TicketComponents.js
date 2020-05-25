@@ -1,5 +1,10 @@
 import React, {useState, useEffect,useRef} from 'react'
 import {Grid, Button, Modal, Form, Select,Table,Icon, Loader,Header} from 'semantic-ui-react'
+<<<<<<< HEAD
+=======
+import { Link } from 'react-router-dom'
+import{ toast} from 'react-toastify'
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
 import ReactToPrint from 'react-to-print';
 import moment from 'moment'
 import firebaseApp from '../config/firebaseConfig'
@@ -7,11 +12,21 @@ import firebaseApp from '../config/firebaseConfig'
 const  TicketComponents =()=>{
 
     const [openModal, setOpenModal] = useState(false)
+<<<<<<< HEAD
     const [formdata, setFormData] = useState({amountPaid:"", attendant:"", locations:""})
+=======
+    const [formdata, setFormData] = useState({amountPaid:"", attendant:"", locations:"", contact:'', sex:''})
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
     const [tableData, setTableData] = useState([])
     const [loader, setLoader] = useState(false)
     const [printModal, setPrintModal] = useState(false)
     const [reciepts, setReciepts] =useState({})
+<<<<<<< HEAD
+=======
+    const [editModel, setEditModal] = useState(false)
+    const [collectionId, setCollectionId] = useState(null)
+    const [showDeleteModal, setShowDeleteModal] = useState(false)
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
     const printReciepts = useRef()
     const showModal = ()=>{
         setOpenModal(true)
@@ -24,6 +39,10 @@ const  TicketComponents =()=>{
     }
     //handle data submition to firestore
     const formSubmit =()=>{
+<<<<<<< HEAD
+=======
+      console.log(formdata)
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
         const locData = formdata.locations.split(',')
         const collectionInfo = {
             amount_paid: parseInt(formdata.amountPaid),
@@ -31,6 +50,11 @@ const  TicketComponents =()=>{
             locations:locData[0],
             latitude: locData[2],
             longitude:locData[1],
+<<<<<<< HEAD
+=======
+            contact:formdata.contact,
+            sex:formdata.sex,
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
             stall_number: `#264${Math.floor(Math.random() * (600 - 50 + 1)) + 50}`,
             createdAt:moment(Date.now()).format('MMM Do YY')
         }
@@ -80,6 +104,61 @@ const  TicketComponents =()=>{
              setReciepts(singleCollection)
          })
      }
+<<<<<<< HEAD
+=======
+     //open the data edit modal
+     const openEditModal = (id)=>{
+         setEditModal(true)
+         setCollectionId(id)
+         firebaseApp.firestore().collection('market-stalls').doc(id).get().then((snapshot)=>{
+           setFormData({...formdata, 
+            attendant:snapshot.data().attendant_name,
+            amountPaid:snapshot.data().amount_paid})
+         })
+     }
+     //submit edited information
+     const submitEditedInfo = (id)=>{
+       const location = formdata.locations.split(',')
+       console.log(id)
+       firebaseApp.firestore().collection('market-stalls').doc(id).update({
+         attendant_name: formdata.attendant,
+         amount_paid:formdata.amountPaid,
+         location:location[0],
+         latitude:location[2],
+         longitude:location[1]
+       }).then(()=>{
+         toast.success('Your data was updated successfully',{
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         })
+       
+       })
+       setEditModal(false)
+     }
+     //delete collection informations
+     const deleteCollection=(id)=>{
+       firebaseApp.firestore().collection('market-stalls').doc(id).delete().then(()=>{
+        toast.warn('Your data was deleted successfully',{
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+         })
+       })
+       setShowDeleteModal(false)
+     }
+     //show delete collection modal
+     const showDeleteCollection=(id)=> {
+       setShowDeleteModal(true)
+       setCollectionId(id)
+     }
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
      // generating collection tables
       const collectionTable = tableData.map((data)=>{
           return(
@@ -89,9 +168,17 @@ const  TicketComponents =()=>{
             <Table.Cell>{data.amount_paid}</Table.Cell>
             <Table.Cell>{data.location}</Table.Cell>
             <Table.Cell>{data.createdAt}</Table.Cell>
+<<<<<<< HEAD
             <Table.Cell><Icon name="print" primary color="blue"  onClick={()=>handleReciepts(data.id)}/>
             <Icon name="edit outline" primary color="green"/>
             <Icon name="trash" primary color="red"/></Table.Cell>
+=======
+            <Table.Cell><Icon name="print" color="blue"  onClick={()=>{
+              setCollectionId(data.id)
+              handleReciepts(data.id)}}/>
+            <Icon name="edit outline" color="green" onClick={()=>openEditModal(data.id)}/>
+            <Icon name="trash" color="red" onClick={()=>showDeleteCollection(data.id)}/></Table.Cell>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
           </Table.Row>
           )
       })
@@ -101,9 +188,19 @@ const  TicketComponents =()=>{
            <Grid>
            <Grid.Row>
              <Grid.Column className="pad1" width="15" style={{marginLeft:40, marginTop:20}}>
+<<<<<<< HEAD
              <Button primary className="add-record"  onClick={showModal}> New Record</Button>
              {loader?<Loader active inline/>:(
                 <Table celled style={{marginTop:60}}>
+=======
+            <Button.Group style={{float:'right', marginBottom:'20px'}}>
+            <Button content="location" icon="point" positive as={Link} to="/maps"/>
+              <Button.Or></Button.Or>
+            <Button icon="plus" content="collections" primary onClick={showModal}/>
+            </Button.Group>
+             {loader?<Loader active inline/>:(
+                <Table celled style={{marginTop:20}}>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                 <Table.Header>
                   <Table.Row>
                     <Table.HeaderCell>Reciept No</Table.HeaderCell>
@@ -122,7 +219,11 @@ const  TicketComponents =()=>{
              </Grid.Column>
            </Grid.Row>
            </Grid>
+<<<<<<< HEAD
            <Modal open={openModal}  onClose={closeModal} dimmer="inverted" size="small">
+=======
+           <Modal open={openModal}  onClose={closeModal} dimmer="inverted" size="tiny">
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                 <Modal.Header>Enter Vender Payment Info</Modal.Header>
                 <Modal.Content>
                 <Form>
@@ -132,6 +233,7 @@ const  TicketComponents =()=>{
                   onChange={e=>setFormData({...formdata,attendant:e.target.value})}
                    />
                 </Form.Field>
+<<<<<<< HEAD
                 <Form.Field>
                   <label>Amount Paid</label>
                   <input placeholder='Amount Paid'
@@ -139,24 +241,68 @@ const  TicketComponents =()=>{
                    />
                 </Form.Field>
                 <label>Location</label>
+=======
+                <Form.Field
+                >
+                  <label>Amount Paid</label>
+                  <input placeholder='Amount Paid' type="number"
+                  onChange={e=>setFormData({...formdata,amountPaid:e.target.value})}
+                   />
+                </Form.Field>
+                <Form.Field
+                >
+                  <label>contactNo</label>
+                  <input placeholder='contact' type="number"
+                  onChange={e=>setFormData({...formdata,contact:e.target.value})}
+                   />
+                </Form.Field>
+                <label>Market</label>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                 <Form.Field
                     control={Select}
                     options={locations}
                     label={{ locations: 'Locations', htmlFor: 'form-select-control-locations' }}
+<<<<<<< HEAD
                     placeholder='Location'
+=======
+                    placeholder='Market'
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                     search
                     searchInput={{ id: 'form-select-control-locations'}}
                     onChange={(e,{value}) =>{
                         setFormData({...formdata, locations:value})
                     }}
                 />
+<<<<<<< HEAD
+=======
+                  <Form.Field
+                  label="female"
+                  control="input"
+                  value="female"
+                  type="radio"
+                  name="htmlRadios"
+                  onChange={(e)=>setFormData({...formdata,sex:e.target.value})}
+                   />
+                <Form.Field
+                  label="male"
+                  control="input"
+                  type="radio"
+                  value="male"
+                  name="htmlRadios"
+                  onChange={(e)=>setFormData({...formdata,sex:e.target.value})}
+                  />
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
               </Form>
                 </Modal.Content>
                 <Modal.Actions>
                     <Button color='black'
                     onClick={closeModal}
                     >
+<<<<<<< HEAD
                     Cancel
+=======
+                    Nope
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                     </Button>
                     <Button
                     positive
@@ -169,7 +315,11 @@ const  TicketComponents =()=>{
                 </Modal.Actions>
               </Modal>
 
+<<<<<<< HEAD
               <Modal open={printModal}  onClose={closePrintModal} dimmer="inverted" size="small">
+=======
+              <Modal open={printModal}  onClose={closePrintModal} dimmer="inverted" size="tiny">
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
               <Modal.Header>Print Reciepts</Modal.Header>
               {loader?<Loader active inline size="small"/>:(
                   <div ref={printReciepts} style={{margin:30}}>
@@ -177,6 +327,11 @@ const  TicketComponents =()=>{
                   <Header> Reciept No: {reciepts.stall_number}</Header>
                   <Header size="small"> Amount Paid : {reciepts.amount_paid}</Header>
                   <Header size="small"> Market Name: {reciepts.locations}</Header>
+<<<<<<< HEAD
+=======
+                  <Header size="small"> contact: {reciepts.contact}</Header>
+                  <Header size="small"> sex: {reciepts.sex}</Header>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                   <Header size="small"> paid by: {reciepts.attendant_name}  on { reciepts.createdAt}</Header>
                   </Modal.Content>
                   </div>
@@ -185,7 +340,11 @@ const  TicketComponents =()=>{
                   <Button color='black'
                   onClick={closePrintModal}
                   >
+<<<<<<< HEAD
                   Cancel
+=======
+                  close
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                   </Button>
                   <ReactToPrint
                   trigger={()=>
@@ -201,6 +360,73 @@ const  TicketComponents =()=>{
                   ></ReactToPrint>
               </Modal.Actions>
             </Modal>
+<<<<<<< HEAD
+=======
+
+            <Modal open={editModel} size="tiny" dimmer="inverted" onClose={()=>setEditModal(false)}>
+            <Modal.Header>Edit clients market details</Modal.Header>
+            <Modal.Content>
+            <Form>
+              <Form.Field>
+              <label>Attendant Name</label>
+              <input type="text" value={formdata.attendant}
+              onChange={(e)=>setFormData({...formdata, attendant:e.target.value})}
+              ></input>
+              </Form.Field>
+              <Form.Field>
+              <label>Amount Paid</label>
+              <input type="text"
+              value={formdata.amountPaid}
+              onChange={(e)=>{setFormData({...formdata,amountPaid:e.target.value})}
+              }
+              ></input>
+              </Form.Field>
+              <Form.Field
+              control={Select}
+              options={locations}
+              label={{ locations: 'Locations', htmlFor: 'form-select-control-locations' }}
+              search
+              searchInput={{ id: 'form-select-control-locations'}}
+              onChange={(e,{value}) =>{
+                  setFormData({...formdata, locations:value})
+              }}
+          />
+             </Form>
+            </Modal.Content>
+            <Modal.Actions>
+                  <Button color='black'
+                  onClick={()=>setEditModal(false)}
+                  content="Close"
+                  />
+                  <Button
+                    positive
+                    icon='edit outline'
+                    labelPosition='right'
+                    content="Edit"
+                    onClick={()=>submitEditedInfo(collectionId)}
+                    />
+              </Modal.Actions>
+            </Modal>
+            <Modal open={showDeleteModal} size="tiny" dimmer="inverted" onClose={()=>setShowDeleteModal(false)}>
+            <Modal.Header>Delete Market collections</Modal.Header>
+            <Modal.Content>
+             <h3>Are show your want to delet this info?</h3>
+            </Modal.Content>
+            <Modal.Actions>
+                  <Button color='black'
+                  onClick={()=>setShowDeleteModal(false)}
+                  content="Close"
+                  />
+                  <Button
+                    positive
+                    icon='trash'
+                    labelPosition='right'
+                    content="trash"
+                    onClick={()=>deleteCollection(collectionId)}
+                    />
+              </Modal.Actions>
+            </Modal>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
         </div>
     )
 }

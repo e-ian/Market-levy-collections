@@ -2,6 +2,7 @@ import React,{useEffect, useRef, useState} from 'react'
 import firebaseApp from '../config/firebaseConfig' 
 import echarts from 'echarts'
 import { Grid,Header, Statistic } from 'semantic-ui-react'
+<<<<<<< HEAD
 import moment from 'moment'
 import CardComponent from './CardComponent'
 
@@ -16,6 +17,16 @@ export default function TrendCompoent() {
         getMarketCollections()
     },[])
     // making call to the firebase collection
+=======
+import CardComponent from './CardComponent'
+
+export default function TrendCompoent() {
+    const trendCharts = useRef()
+    const bubleChart = useRef()
+    const piechart = useRef()
+    const collections = []
+    const [marketCollections, setMarketCollections] = useState([])
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
     const getMarketCollections = async()=>{
         await firebaseApp.firestore().collection('market-stalls').get().then((snapshot)=>{
             const data = []
@@ -85,7 +96,10 @@ export default function TrendCompoent() {
         const bubbleData = chartData.map((data)=>{
             return [data.amount_paid, data.amount_paid, data.amount_paid, data.location]
         })
+<<<<<<< HEAD
         console.log(bubbleData)
+=======
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
         const  data = [bubbleData];
         
         const options = {
@@ -160,8 +174,13 @@ export default function TrendCompoent() {
             color: ['#3398DB'],
             tooltip: {
                 trigger: 'axis',
+<<<<<<< HEAD
                 axisPointer: {            // 坐标轴指示器，坐标轴触发有效
                     type: 'shadow'        // 默认为直线，可选为：'line' | 'shadow'
+=======
+                axisPointer: {   
+                    type: 'shadow'   
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                 }
             },
             grid: {
@@ -196,6 +215,14 @@ export default function TrendCompoent() {
         
         piechartData.setOption(options)
     }
+<<<<<<< HEAD
+=======
+    // making the call to the use effect functionality
+    useEffect(()=>{
+        getMarketCollections()
+    },[])
+    // making call to the firebase collection
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
     return (
         <div>
         <Grid>
@@ -244,7 +271,11 @@ export default function TrendCompoent() {
             </CardComponent>
             <Grid.Row>
             <CardComponent fluid style={{marginLeft:20, padding:5}}>
+<<<<<<< HEAD
             <div ref={piechart} style={{width:500, height:280}}></div>
+=======
+            <div ref={piechart} style={{width:500, height:240}}></div>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
             </CardComponent>
             </Grid.Row>
             </Grid.Column>

@@ -1,0 +1,6 @@
+export const USERLOGIN = 'USERLOGIN'
+export const LOADING = 'LOADING'
+export const GETPLACES = 'GETPLACES'
+export const GETMARKETS = 'GETMARKETS'
+export const LOADMARKETS = 'LOADMARKETS'
+export const LOADPLACES = 'LOADPLACES'

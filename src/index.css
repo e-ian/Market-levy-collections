@@ -8,7 +8,11 @@
   border-bottom: 0px;
   width: 120%;
   padding-left: 30px;
+<<<<<<< HEAD
   height: 1050px;
+=======
+  height: 900px;
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
 }
 .profileImage{
   height: 40px;
@@ -18,13 +22,22 @@
 }
 .trend-charts{
   width: 115%;
+<<<<<<< HEAD
   height: 430px;
   margin-left: -90px;
+=======
+  height: 350px;
+  margin-left: -80px;
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
 }
 .bubble-chart{
   margin-top: 10px;
   width: 600px;
+<<<<<<< HEAD
   height: 400px;
+=======
+  height: 355px;
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
 }
 .add-record{
   float:right;
@@ -40,4 +53,33 @@
   height: 1.71428571rem;
   font-size: .92857143em;
   margin-bottom: 5%;
+<<<<<<< HEAD
+=======
+}
+.form-element{
+  padding: 60px;
+}
+.form-card{
+  margin-top: 150px;
+}
+.maps{
+  margin-top: 10px;
+  margin-left: 10px;
+  height:600px;
+  margin-right: 10px;
+  border: 2px solid gainsboro;
+}
+.footer{
+ padding: 2%;
+ margin-left: 40%;
+}
+.venderMaker{
+  background-image: url('../src/images/pointer.png');
+  height: 30px;
+  width: 30px;
+}
+a {
+  color:green !important;
+  text-decoration: none;
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
 }

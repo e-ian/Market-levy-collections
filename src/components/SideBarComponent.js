@@ -20,10 +20,23 @@ export default function SideBarComponent() {
               </Menu.Header>
               <Menu.Menu >
                 <Menu.Item
+<<<<<<< HEAD
                 active={activeItem === "Collections"}
                 name="Collections"
                 onClick={handleItemClick}
                 ><Link to="/collections"> Collections</Link>
+=======
+                active={activeItem === "Venders"}
+                name="Venders"
+                onClick={handleItemClick}
+                ><Link to="/vendors">Vendors</Link>
+                </Menu.Item>
+                <Menu.Item
+                active={activeItem === "Markers"}
+                name="Markets"
+                onClick={handleItemClick}
+                ><Link to="/markets">Markets</Link>
+>>>>>>> 8cbef0c8499b5e60ead15b47821f5effc42e5753
                 </Menu.Item>
               </Menu.Menu>
             </Menu.Item>
