@@ -9,7 +9,7 @@ const  FooterComponent =()=>{
             <Grid.Column>
              <div className="footer">
                 <div>
-                    <Header size="tiny"> &copy;Trudigital, All Rights Reserved</Header>
+                    <Header size="tiny"> &copy;Trudigital, 2020</Header>
                 </div>
              </div>
             </Grid.Column>

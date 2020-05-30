@@ -222,7 +222,7 @@ export default function TrendCompoent() {
             <Grid.Column width="5">
                 <Statistic size='small'>
                     <Statistic.Label>Market Locations</Statistic.Label>
-                    <Statistic.Value>2,04</Statistic.Value>
+                    <Statistic.Value>204</Statistic.Value>
                 </Statistic>
             </Grid.Column>
             <Grid.Column width="5">
